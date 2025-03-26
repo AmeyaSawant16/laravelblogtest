@@ -20,7 +20,7 @@ class PostCollectionFactory extends Factory
             'title' => fake()->sentence(6),
             'content' => fake()->paragraph(4),
             'excerpt' => fake()->text(100),
-            'image' => null,
+            'image' => 'post_cover_image_1400x600.svg',
             'tags' => json_encode(fake()->words(5)),
             'meta_title' => fake()->sentence(8),
             'meta_description' => fake()->text(160),

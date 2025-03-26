@@ -60,17 +60,17 @@ services:
     networks:
       - app_network
     entrypoint: ["/bin/sh", "-c", "
-        php artisan migrate --force &&
         php artisan config:cache &&
         php artisan route:cache &&
         php artisan view:cache &&
         php artisan storage:link &&
-        php artisan db:seed &&
+        php artisan migrate --force &&
+        php artisan db:seed --force &&
         php-fpm
     "]
 
   queue:
-    image: laravelblog:latest  # Use the same Laravel image
+    image: laravelblog:latest
     container_name: laravel_queue
     restart: unless-stopped
     depends_on:
@@ -87,6 +87,17 @@ services:
       - app_network
     volumes:
       - ./storage:/var/www/html/storage
+  
+  scheduler:
+    image: laravelblog:latest
+    container_name: laravel_scheduler
+    restart: unless-stopped
+    working_dir: /var/www/html
+    depends_on:
+      - app
+    command: ["sh", "-c", "while true; do php artisan schedule:run >> /dev/null 2>&1; sleep 60; done"]
+    networks:
+      - app_network
 
   db:
     image: mysql:8.0
@@ -95,8 +106,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=ameya123
       - MYSQL_DATABASE=laravel
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=ameya123
     ports:
       - "3306:3306"
     volumes:

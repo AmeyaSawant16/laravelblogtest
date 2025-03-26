@@ -33,7 +33,7 @@ const fallbackImg = 'post_cover_image_1400x600.svg'
             <!-- <PlaceholderPattern /> -->
             <SinglePostEditHeader :post-id="postDetails.id" :created-by-id="postDetails.created_by" />
 
-            <SinglePostView :imageurl="postDetails.image ?? fallbackImg" :name="userDetails[0]?.name" :title="postDetails.title" :post_date="postDetails.formatted_date">
+            <SinglePostView :imageurl="postDetails?.image ?? fallbackImg" :name="userDetails[0]?.name" :title="postDetails.title" :post_date="postDetails.formatted_date">
                 <p>
                     {{ postDetails.content }}
                 </p>
