@@ -15,8 +15,8 @@ class PostCollectionSeeder extends Seeder
     {
 
         // PostCollection::factory(2)->create();
-        $batchSize = 1000; // Insert in chunks of 5000
-        $totalRecords = 200000;
+        $batchSize = 10; // Insert in chunks of 5000
+        $totalRecords = 100;
 
         for ($i = 0; $i < ($totalRecords / $batchSize); $i++) {
             $posts = PostCollection::factory()->count($batchSize)->make()->each(function ($post) {

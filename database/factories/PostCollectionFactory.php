@@ -20,7 +20,7 @@ class PostCollectionFactory extends Factory
             'title' => fake()->sentence(6),
             'content' => fake()->paragraph(4),
             'excerpt' => fake()->text(100),
-            'image' => 'post_cover_image_1400x600.svg',
+            'image' => null,
             'tags' => json_encode(fake()->words(5)),
             'meta_title' => fake()->sentence(8),
             'meta_description' => fake()->text(160),
@@ -28,7 +28,7 @@ class PostCollectionFactory extends Factory
             'publish_datetime' => fake()->dateTimeBetween('-1 year', 'now'),
             'created_by' => 1, // Assuming user ID 1 as the creator
             'updated_by' => 1, // Assuming user ID 1 as the updater
-            'published' => fake()->boolean(80), // 80% chance of being published
+            'published' => fake()->boolean(90), // 80% chance of being published
         ];
     }
 }
