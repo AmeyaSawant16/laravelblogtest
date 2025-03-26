@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             ]);
 
             // adding posts
-            $batchSize = 10; // Insert in chunks of 5000
-            $totalRecords = 100;
+            $batchSize = 100; // Insert in chunks of 5000
+            $totalRecords = 500;
 
             for ($i = 0; $i < ($totalRecords / $batchSize); $i++) {
                 $posts = PostCollection::factory()->count($batchSize)->make()->each(function ($post) {
