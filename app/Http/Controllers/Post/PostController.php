@@ -40,9 +40,7 @@ class PostController extends Controller
     public function homePage(Request $request): Response
     {
         $posts = $this->postCollection->getAllPosts();
-        // dd(`post:`, $posts);
-        $cacheData =  Cache::get("posts_list_chunk_1", collect());
-        return Inertia::render('Dashboard', ["postList" => $posts, 'cacheData' => $cacheData]);
+        return Inertia::render('Dashboard', ["postList" => $posts]);
     }
 
     public function postDetail(Request $request, PostCollection $postId): Response

@@ -14,12 +14,14 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+
 const scrollTarget = useTemplateRef<HTMLElement>('posts-grid')
 
 const searchResult = computed(() => usePage().props.searchResult);
 
 const postList:any = usePage().props.postList;
-const data = ref(postList);
+const data = ref(postList[0]);
+let pgIndex = 0;
 
 watch( searchResult, (newVal) => {
     if(newVal){
@@ -29,16 +31,18 @@ watch( searchResult, (newVal) => {
 
         data.value = test;
     }else{
-        data.value = postList;
+        data.value = postList[0];
     }
 } )
 
 function loadMorePosts() {
-    if( postList.length() > pgIndex ){
+    if( postList.length > pgIndex ){
         pgIndex += 1;
-        data.value.push(...postList[pgIndex])
+        if(postList[pgIndex]){
+            data.value.push(...postList[pgIndex])
+        }
     }
-  }
+}
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll)
@@ -72,7 +76,7 @@ onMounted(() => {
                 Create New Post
             </Button>
             <div ref="posts-grid" class="grid auto-rows-min gap-4 md:grid-cols-3" >
-                <PostGridView v-for="index in data" :imageurl="index.image ?? fallbackImg" :content="index.content.substr(0, 50)" :post-id="index.id" :title="index.title"/>
+                <PostGridView v-for="index in data" :comment-count="index.comment_count" :publish-date="index.formatted_date" :imageurl="index.image ?? fallbackImg" :excerpt="index.excerpt" :post-id="index.id" :title="index.title"/>
             </div>
         </div>
     </AppLayout>

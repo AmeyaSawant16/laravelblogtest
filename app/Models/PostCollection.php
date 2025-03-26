@@ -118,7 +118,33 @@ class PostCollection extends Model
     }
 
     public function getUserPosts($userId){
-        $posts = self::where('created_by', '=', $userId)->orderBy('created_at', 'desc')->get();
+
+        $columns = [
+            'post_collections.id',
+            'post_collections.title',
+            'post_collections.excerpt',
+            'post_collections.tags',
+            'post_collections.image',
+            'post_collections.meta_title',
+            'post_collections.meta_description',
+            'post_collections.publish_datetime',
+            'post_collections.created_by',
+            'post_collections.content',
+            'post_collections.published',
+            'post_collections.created_at',
+        ];
+        
+
+        $posts = self::leftJoin('comments', 'post_collections.id', '=', 'comments.post_id')
+        ->select(array_merge($columns, [DB::raw('COUNT(comments.id) as comment_count')]))
+        ->where('created_by', '=', $userId)
+        ->groupBy($columns)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->toArray(); 
+
+        $posts = array_chunk($posts, 30);
+        
         return $posts;
     }
 
