@@ -32,7 +32,7 @@ class PostCollection extends Model
 
     protected $appends = ['formatted_date'];
 
-    static $chunkSize = 1000;
+    static $chunkSize = 30;
 
     protected static function booted()
     {
@@ -53,12 +53,12 @@ class PostCollection extends Model
     {
         
         $totalRecords = self::count();
-        // dd($totalRecords);
 
         // Delete old cache keys
         for ($i = 0; $i < ceil($totalRecords / self::$chunkSize); $i++) {
-            Cache::forget("posts_list_chunk_".($i+1));
+            Cache::forget('posts_list_chunk_'.($i+1));
         }
+
 
         $columns = [
             'post_collections.id',
@@ -114,7 +114,6 @@ class PostCollection extends Model
             $chunk = Cache::get('posts_list_chunk_'.($i+1), collect());
             $allRecords[] = $chunk;
         }
-
         return $allRecords;
     }
 

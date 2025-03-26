@@ -14,13 +14,13 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const fallbackImg = 'post_cover_image_1400x600.svg'
 
-const postList:any = usePage().props.postList;
+const postList:any = usePage().props?.postList;
 
 const searchResult = computed(() => usePage().props.searchResult);
 
 const scrollTarget = useTemplateRef<HTMLElement>('posts-grid')
 const data = ref(postList[0]);
-const pgIndex = 0;
+let pgIndex = 0;
 
 watch( searchResult, (newVal) => {
     if(newVal){
@@ -35,9 +35,11 @@ watch( searchResult, (newVal) => {
 } )
 
 function loadMorePosts() {
-    if( postList.length() > pgIndex ){
+    if( postList.length > pgIndex ){
         pgIndex += 1;
-        data.value.push(...postList[pgIndex])
+        if(postList[pgIndex]){
+            data.value.push(...postList[pgIndex])
+        }
     }
     // console.log(`Im triggered`)
   }
