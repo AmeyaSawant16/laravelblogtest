@@ -1,5 +1,19 @@
 Make sure you register on "https://mailtrap.io/" to capture mails.
 
+Caching Strategy use:  Write-through & Cache Batching
+
+Database schema:
+
+PostCollections table:
+id number, title string, content text, excerpt text, image string, tags json, meta_title string, meta_description text, publish_type enum, publish_datetime timestamp, created_by number, updated_by number, created_at timestamp, updated_at timestamp, published boolean.
+-------------
+Comments table:
+id number, user_id number, comment_date timestamp, user_comment string, post_id number, created_at timestamp, updated_at timestamp.
+----------------
+Users table:
+id number, name string, email string, email_verified_at timestamp, password string, remember_token string, otp string, created_at timestamp, updated_at timestamp.
+-----------------
+
 If you are going to run "php artisan serve" then make sure you set all the ENV params properly in .env file
 
 ELASTICSEARCH_HOST, 
