@@ -24,7 +24,7 @@ services:
       - APP_ENV=production
       - APP_KEY=base64:famGtvBDKbelkGus5JPvc3TKdzibEEy1lho/xjpT6xU=
       - APP_DEBUG=false
-      - APP_URL=http://localhost
+      - APP_URL=http://localhost:8000
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
