@@ -29,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
             ->prefix('api')
             ->group(base_path('routes/api.php'));
 
-        if (!Cache::has('posts_list_chunk_1')) {
+        /* if (!Cache::has('posts_list_chunk_1')) {
             PostCollection::updateCache();
-        }
+        } */
     }
 }
