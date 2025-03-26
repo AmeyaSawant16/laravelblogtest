@@ -21,7 +21,7 @@ const userDetails = computed(() => page.props.userDetails);
 const postDetails = computed(() => page.props.post);
 console.log(postDetails);
 const comments = computed(() => page.props.comments);
-
+const fallbackImg = 'post_cover_image_1400x600.svg'
 </script>
 
 <template >
@@ -33,7 +33,7 @@ const comments = computed(() => page.props.comments);
             <!-- <PlaceholderPattern /> -->
             <SinglePostEditHeader :post-id="postDetails.id" :created-by-id="postDetails.created_by" />
 
-            <SinglePostView :imageurl="postDetails.image" :name="userDetails[0]?.name" :title="postDetails.title" :post_date="postDetails.formatted_date">
+            <SinglePostView :imageurl="postDetails.image ?? fallbackImg" :name="userDetails[0]?.name" :title="postDetails.title" :post_date="postDetails.formatted_date">
                 <p>
                     {{ postDetails.content }}
                 </p>

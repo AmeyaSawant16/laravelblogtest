@@ -83,7 +83,7 @@ const submit = () => {
                             rows="5"
                             id="post_excerpt"
                             class="mt-1 block w-full"
-                            v-model="form.content"
+                            v-model="form.excerpt"
                             placeholder="Post Excerpt"
                         />
                         <InputError class="mt-2" :message="form.errors.excerpt" />
