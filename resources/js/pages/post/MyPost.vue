@@ -18,13 +18,11 @@ const scrollTarget = useTemplateRef<HTMLElement>('posts-grid')
 
 const searchResult = computed(() => usePage().props.searchResult);
 
-const postList = usePage().props.postList;
+const postList:any = usePage().props.postList;
 const data = ref(postList);
 
 watch( searchResult, (newVal) => {
     if(newVal){
-        console.log(newVal);
-        console.log(`user`, usePage().props.auth)
         const test = newVal.filter((item) => item._source.created_by == usePage().props.auth.user.id ).map( (item) => {
                 return item._source;
         } );
@@ -36,8 +34,10 @@ watch( searchResult, (newVal) => {
 } )
 
 function loadMorePosts() {
-    // console.log(`Im triggered`)
-    // data.value.push(...Array(50))
+    if( postList.length() > pgIndex ){
+        pgIndex += 1;
+        data.value.push(...postList[pgIndex])
+    }
   }
 
 onMounted(() => {

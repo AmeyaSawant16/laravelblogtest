@@ -13,11 +13,13 @@ class PostCollectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $batchSize = 5000; // Insert in chunks of 5000
-        $totalRecords = 200000;
+        $batchSize = 10; // Insert in chunks of 5000
+        $totalRecords = 10;
 
         for ($i = 0; $i < ($totalRecords / $batchSize); $i++) {
-            $posts = PostCollection::factory()->count($batchSize)->make()->toArray();
+            $posts = PostCollection::factory()->count($batchSize)->make()->each(function ($post) {
+                $post->formatted_date = $post->formatted_date; // Ensure it's calculated
+            })->toArray();
             PostCollection::insert($posts); // Bulk insert
         }
     }

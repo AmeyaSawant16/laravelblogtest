@@ -21,10 +21,10 @@ class PostCollectionFactory extends Factory
             'content' => $this->faker->paragraph(4),
             'excerpt' => $this->faker->text(100),
             'image' => '',
-            'tags' => implode(',', $this->faker->words(5)),
+            'tags' => '',
             'meta_title' => $this->faker->sentence(8),
             'meta_description' => $this->faker->text(160),
-            'publish_type' => $this->faker->randomElement(['scheduled', 'immediate']),
+            'publish_type' => 'now',
             'publish_datetime' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'created_by' => 1, // Assuming user ID 1 as the creator
             'updated_by' => 1, // Assuming user ID 1 as the updater

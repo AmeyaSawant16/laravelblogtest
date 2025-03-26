@@ -16,9 +16,6 @@ const fallbackImg = 'post_cover_image_1400x600.svg'
 
 const postList:any = usePage().props.postList;
 
-console.log(`Cache Data: `, usePage().props.cacheData);
-console.log(`postList: `, postList);
-
 const searchResult = computed(() => usePage().props.searchResult);
 
 const scrollTarget = useTemplateRef<HTMLElement>('posts-grid')
