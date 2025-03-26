@@ -1,3 +1,18 @@
+Steps to run the project
+
+1. Build docker image
+- docker build -t laravelblog:latest .
+
+2. Run docker compose command
+- docker-compose up -d
+
+Wait for sometime to get all the services up and running.
+
+3. Visit "http://localhost:8000" on brower
+
+4. Register or login using below details.
+- email: test@example.com
+
 Make sure you register on "https://mailtrap.io/" to capture mails.
 
 Caching Strategy use:  Write-through & Cache Batching
