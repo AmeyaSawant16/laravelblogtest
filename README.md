@@ -15,6 +15,12 @@ Wait for sometime to get all the services up and running.
 
 Make sure you register on "https://mailtrap.io/" to capture mails.
 
+Update Env:
+
+MAIL_USERNAME:<account-id>
+
+MAIL_PASSWORD: <account-pass>
+
 Caching Strategy use:  Write-through & Cache Batching
 
 Technical Challenge faced:
