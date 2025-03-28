@@ -42,13 +42,6 @@ return new class extends Migration
                 $table->integer('last_activity')->index();
             });
         }
-
-        if(!Schema::hasTable('migrations')){
-            Schema::create('migrations', function (Blueprint $table) {
-                $table->string('id')->primary();
-                $table->string('migration')->default('seeded_flag');
-            });
-        };
     }
 
     /**
@@ -59,6 +52,5 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-        Schema::dropIfExists('migrations');
     }
 };
