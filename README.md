@@ -14,12 +14,16 @@ Wait for sometime to get all the services up and running.
 - email: test@example.com
 
 Make sure you register on "https://mailtrap.io/" to capture mails.
+Update details in env
+
+MAIL_USERNAME=user_key
+
+MAIL_PASSWORD=pass_key
 
 Caching Strategy use:  Write-through & Cache Batching
 
 Technical Challenge faced:
-1. Pushing 200k records to redis cache, Running out of memory.
-2. Unable to build docker image of laravel, Trying to connect redis and database during image build process.
+1. Pushing 200k records to redis cache, Running out of memory, So now only pushing 500 records. If your redis has higher memory you can increase $totalRecords in databaseSeeder.php file.
 
 
 Database schema:
